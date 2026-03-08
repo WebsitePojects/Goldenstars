@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollDirection } from '../hooks/useAnimations';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
 
-const logoWithName = '../../Public/Assets/GPRCI logo with name.png';
+const logoWithName = '/Assets/GPRCI logo with name.png';
 
 const navLinks = [
   { name: 'Home', href: '#home' },

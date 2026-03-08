@@ -7,19 +7,19 @@ const heroSlides = [
     title: 'Quality Products with the Best Manufacturing Prices',
     subtitle: 'Innovation. Craftsmanship. Performance.',
     cta: 'Explore Our Services',
-    image: '../../Public/Assets/insideGoldenStars.jpg',
+    image: '/Assets/insideGoldenStars.jpg',
   },
   {
     title: 'Innovation. Craftsmanship. Performance.',
     subtitle: 'Building long-term relationships through excellence.',
     cta: 'Discover More',
-    image: '../../Public/Assets/GoldenStarsGate.jpg',
+    image: '/Assets/GoldenStarsGate.jpg',
   },
   {
     title: 'Customer Satisfaction First',
     subtitle: 'FDA certified quality products you can trust.',
     cta: 'Contact Us Today',
-    image: '../../Public/Assets/coffeePic.jpg',
+    image: '/Assets/coffeePic.jpg',
   },
 ];
 

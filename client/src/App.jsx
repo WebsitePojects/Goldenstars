@@ -9,7 +9,7 @@ import Products from './components/Products';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-const logo = '../../Public/Assets/logo_3.png';
+const logo = '/Assets/logo_3.png';
 
 /* ── Intro Loader ───────────────────────────────────────────── */
 function IntroLoader({ onComplete }) {
