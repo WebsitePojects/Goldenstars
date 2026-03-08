@@ -233,7 +233,7 @@ export default function Products() {
               Don't see what you need? We create custom packaging solutions for any requirement.
             </p>
             <a href="#contact" className="btn-primary inline-block">
-              Request Custom Solution
+              <span>Request Custom Solution</span>
             </a>
           </div>
         </RevealOnScroll>

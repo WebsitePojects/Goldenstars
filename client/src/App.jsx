@@ -9,6 +9,8 @@ import Products from './components/Products';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
+const logo = '../../Public/Assets/logo_3.png';
+
 /* ── Intro Loader ───────────────────────────────────────────── */
 function IntroLoader({ onComplete }) {
   useEffect(() => {
@@ -29,24 +31,14 @@ function IntroLoader({ onComplete }) {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-4xl md:text-5xl font-display font-bold tracking-tight">
-            <motion.span
-              className="text-golden-500 inline-block"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            >
-              GOLDEN
-            </motion.span>
-            <motion.span
-              className="text-white inline-block"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            >
-              STARS
-            </motion.span>
-          </span>
+          <motion.img
+            src={logo}
+            alt="Goldenstars Packaging Resources Co. Inc."
+            className="h-16 md:h-20 w-auto object-contain mx-auto"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          />
         </motion.div>
 
         {/* Loading bar */}

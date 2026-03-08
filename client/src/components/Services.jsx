@@ -279,7 +279,7 @@ export default function Services() {
                     href="#contact"
                     className="ml-auto btn-primary text-sm"
                   >
-                    Get Started
+                    <span>Get Started</span>
                   </a>
                 </div>
               </div>

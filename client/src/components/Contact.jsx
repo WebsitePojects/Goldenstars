@@ -305,7 +305,7 @@ export default function Contact() {
                         Sending...
                       </span>
                     ) : (
-                      'Submit Message'
+                      <span>Submit Message</span>
                     )}
                   </motion.button>
                 </div>

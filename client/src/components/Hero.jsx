@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AnimatedText } from '../utils/animations';
 import { HiArrowDown } from 'react-icons/hi';
 
 const heroSlides = [
@@ -8,16 +7,19 @@ const heroSlides = [
     title: 'Quality Products with the Best Manufacturing Prices',
     subtitle: 'Innovation. Craftsmanship. Performance.',
     cta: 'Explore Our Services',
+    image: '../../Public/Assets/insideGoldenStars.jpg',
   },
   {
     title: 'Innovation. Craftsmanship. Performance.',
     subtitle: 'Building long-term relationships through excellence.',
     cta: 'Discover More',
+    image: '../../Public/Assets/GoldenStarsGate.jpg',
   },
   {
     title: 'Customer Satisfaction First',
     subtitle: 'FDA certified quality products you can trust.',
     cta: 'Contact Us Today',
+    image: '../../Public/Assets/coffeePic.jpg',
   },
 ];
 
@@ -41,11 +43,28 @@ export default function Hero() {
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
-        {/* Gradient mesh background */}
-        <div className="absolute inset-0 bg-forest-800" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={heroSlides[currentSlide].image}
+            className="absolute inset-0"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.02 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <img
+              src={heroSlides[currentSlide].image}
+              alt={heroSlides[currentSlide].title}
+              className="h-full w-full object-cover"
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="absolute inset-0 bg-forest-800/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-forest-800/80 via-forest-800/55 to-forest-800/30" />
 
         {/* Geometric pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.03]"
+        <div className="absolute inset-0 opacity-[0.05]"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M30 0L60 30L30 60L0 30z' stroke='%23FED702' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E")`,
           }}
@@ -108,7 +127,7 @@ export default function Hero() {
             <div className="relative min-h-[200px] md:min-h-[260px]">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={currentSlide}
+                  key={`${currentSlide}-${heroSlides[currentSlide].title}`}
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -40 }}
@@ -125,7 +144,7 @@ export default function Hero() {
                       </span>
                     ))}
                   </h1>
-                  <p className="mt-6 text-lg md:text-xl text-white/50 max-w-xl font-light leading-relaxed">
+                  <p className="mt-6 text-lg md:text-xl text-white/80 max-w-xl font-light leading-relaxed">
                     {heroSlides[currentSlide].subtitle}
                   </p>
                 </motion.div>
@@ -185,10 +204,10 @@ export default function Hero() {
             <div className="glass-card p-8 golden-glow">
               <div className="grid grid-cols-2 gap-6">
                 {[
-                  { number: '10+', label: 'Years Experience', icon: '🏭' },
-                  { number: '500+', label: 'Happy Clients', icon: '🤝' },
-                  { number: '50+', label: 'Product Lines', icon: '📦' },
-                  { number: '100%', label: 'FDA Certified', icon: '✅' },
+                  { number: '10+', label: 'Years Experience' },
+                  { number: '500+', label: 'Happy Clients' },
+                  { number: '50+', label: 'Product Lines' },
+                  { number: '100%', label: 'FDA Certified' },
                 ].map((stat, i) => (
                   <motion.div
                     key={stat.label}

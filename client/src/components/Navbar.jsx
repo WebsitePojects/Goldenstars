@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollDirection } from '../hooks/useAnimations';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
 
+const logoWithName = '../../Public/Assets/GPRCI logo with name.png';
+
 const navLinks = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
@@ -69,24 +71,13 @@ export default function Navbar() {
                 e.preventDefault();
                 handleNavClick('#home');
               }}
-              className="relative z-10 flex items-center gap-3 group"
+              className="relative z-10 flex items-center"
             >
-              <div className="relative">
-                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-golden-500 rounded-lg flex items-center justify-center transform transition-transform duration-500 group-hover:rotate-12">
-                  <span className="font-display font-black text-forest-700 text-xl lg:text-2xl">
-                    G
-                  </span>
-                </div>
-                <div className="absolute -inset-1 bg-golden-500/20 rounded-xl blur-sm group-hover:bg-golden-500/40 transition-all duration-500" />
-              </div>
-              <div className="hidden sm:block">
-                <span className="block text-golden-500 font-display font-bold text-lg lg:text-xl leading-tight tracking-tight">
-                  Goldenstars
-                </span>
-                <span className="block text-golden-500/60 text-[10px] lg:text-xs uppercase tracking-[0.25em] font-medium">
-                  Packaging Resources
-                </span>
-              </div>
+              <img
+                src={logoWithName}
+                alt="Goldenstars Packaging Resources Co. Inc."
+                className="h-10 sm:h-12 lg:h-14 w-auto object-contain"
+              />
             </a>
 
             {/* Desktop Nav */}
