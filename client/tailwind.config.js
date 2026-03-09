@@ -52,10 +52,31 @@ export default {
           800: '#134B50',
           900: '#0B2D30',
         },
+        // Yucca-inspired sage/olive accent
+        sage: {
+          400: '#707767',
+          500: '#5A6150',
+        },
+        // Warm beige/sand palette (Yucca landing)
+        sand: {
+          50: '#FDFAF6',
+          100: '#F8F3EC',
+          200: '#F0E8DB',
+          300: '#E5D9C8',
+          400: '#D4C4AA',
+          500: '#BFA98A',
+          600: '#A38E6F',
+          700: '#7D6C52',
+          800: '#584C39',
+          900: '#372F23',
+        },
       },
       fontFamily: {
         display: ['Playfair Display', 'serif'],
         body: ['Inter', 'sans-serif'],
+      },
+      transitionDuration: {
+        '400': '400ms',
       },
       animation: {
         'fade-in': 'fadeIn 0.8s ease-out forwards',
@@ -69,6 +90,10 @@ export default {
         'float': 'float 6s ease-in-out infinite',
         'glow-pulse': 'glowPulse 3s ease-in-out infinite',
         'spin-slow': 'spin 20s linear infinite',
+        // Yucca-style clipPath reveal
+        'clip-reveal-up': 'clipRevealUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+        'clip-reveal-down': 'clipRevealDown 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+        'border-scale': 'borderScale 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards',
       },
       keyframes: {
         fadeIn: {
@@ -110,6 +135,19 @@ export default {
         glowPulse: {
           '0%, 100%': { boxShadow: '0 0 20px rgba(254, 215, 2, 0.3)' },
           '50%': { boxShadow: '0 0 40px rgba(254, 215, 2, 0.6)' },
+        },
+        // Yucca-style clipPath reveals
+        clipRevealUp: {
+          '0%': { clipPath: 'inset(100% 0% 0% 0%)' },
+          '100%': { clipPath: 'inset(0% 0% 0% 0%)' },
+        },
+        clipRevealDown: {
+          '0%': { clipPath: 'inset(0% 0% 100% 0%)' },
+          '100%': { clipPath: 'inset(0% 0% 0% 0%)' },
+        },
+        borderScale: {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' },
         },
       },
       backgroundImage: {

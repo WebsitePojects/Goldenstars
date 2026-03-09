@@ -25,7 +25,7 @@
 
   /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
 
   ::-webkit-scrollbar-track {
@@ -33,7 +33,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-golden-600 rounded-full;
+    @apply bg-golden-600/60 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -42,16 +42,38 @@
 }
 
 @layer components {
-  .btn-primary {
-    @apply relative inline-flex items-center gap-2 px-8 py-4 bg-golden-500 text-forest-700 font-semibold text-sm uppercase tracking-widest overflow-hidden transition-all duration-500 ease-out;
+  /* ── Sticky scroll-cover sections ── */
+  /*
+   * Two-div pattern:
+   *  .cover-track  — outer, position:relative, min-height:100vh
+   *                  creates the scroll distance so the section
+   *                  has dwell time before the next one covers it.
+   *  .cover-panel  — inner, position:sticky top:0
+   *                  stays pinned while user scrolls through the track.
+   */
+  .cover-track {
+    position: relative;
+    /* guarantees at least one full viewport of scroll per section */
+    min-height: 100vh;
   }
 
-  .btn-primary::before {
-    content: '';
+  .cover-panel {
+    position: sticky;
+    top: 0;
+    /* soft leading shadow so incoming sections feel elevated */
+    box-shadow: 0 -8px 48px rgba(0, 0, 0, 0.20);
+  }
+
+  /* ── Yucca-style Button: fill + dual text ── */
+  .btn-primary {
+    @apply relative inline-flex items-center gap-3 px-8 py-4 bg-golden-500 text-forest-700 font-semibold text-sm uppercase tracking-widest overflow-hidden transition-all duration-500 ease-out rounded-none;
+  }
+
+  .btn-primary .btn-fill {
     @apply absolute inset-0 bg-forest-700 transform -translate-x-full transition-transform duration-500 ease-out;
   }
 
-  .btn-primary:hover::before {
+  .btn-primary:hover .btn-fill {
     @apply translate-x-0;
   }
 
@@ -59,20 +81,41 @@
     @apply text-golden-500;
   }
 
+  .btn-primary .btn-text-wrapper {
+    @apply relative z-10 overflow-hidden block;
+    height: 1.4em;
+  }
+
+  .btn-primary .btn-text,
+  .btn-primary .btn-text-hover {
+    @apply block transition-transform duration-400 ease-out;
+  }
+
+  .btn-primary .btn-text-hover {
+    @apply text-golden-500;
+  }
+
+  .btn-primary:hover .btn-text {
+    transform: translateY(-100%);
+  }
+
+  .btn-primary:hover .btn-text-hover {
+    transform: translateY(-100%);
+  }
+
   .btn-primary span {
     @apply relative z-10;
   }
 
   .btn-outline {
-    @apply relative inline-flex items-center gap-2 px-8 py-4 border-2 border-golden-500 text-golden-500 font-semibold text-sm uppercase tracking-widest overflow-hidden transition-all duration-500;
+    @apply relative inline-flex items-center gap-3 px-8 py-4 border-2 border-golden-500 text-golden-500 font-semibold text-sm uppercase tracking-widest overflow-hidden transition-all duration-500 rounded-none;
   }
 
-  .btn-outline::before {
-    content: '';
+  .btn-outline .btn-fill {
     @apply absolute inset-0 bg-golden-500 transform scale-x-0 origin-left transition-transform duration-500 ease-out;
   }
 
-  .btn-outline:hover::before {
+  .btn-outline:hover .btn-fill {
     @apply scale-x-100;
   }
 
@@ -90,6 +133,23 @@
 
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ── Yucca-style border line animation ── */
+  .border-reveal {
+    @apply relative;
+  }
+
+  .border-reveal::after {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0 h-px bg-golden-500/30 origin-left;
+    transform: scaleX(0);
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .border-reveal.is-visible::after,
+  .border-reveal:hover::after {
+    transform: scaleX(1);
   }
 
   .heading-line {
@@ -124,6 +184,75 @@
   .golden-glow {
     box-shadow: 0 0 60px rgba(254, 215, 2, 0.15), 0 0 120px rgba(254, 215, 2, 0.05);
   }
+
+  /* ── Yucca-style clipPath reveal cards ── */
+  .clip-reveal {
+    clip-path: inset(0% 0% 100% 0%);
+    transition: clip-path 1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .clip-reveal.is-visible {
+    clip-path: inset(0% 0% 0% 0%);
+  }
+
+  /* ── Yucca-style solution item with hover arrow ── */
+  .solution-item {
+    @apply relative py-8 cursor-pointer;
+  }
+
+  .solution-item .border-line {
+    @apply absolute bottom-0 left-0 right-0 h-px bg-white/10;
+  }
+
+  .solution-item .border-line::after {
+    content: '';
+    @apply absolute inset-0 bg-golden-500 origin-left;
+    transform: scaleX(0);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .solution-item:hover .border-line::after {
+    transform: scaleX(1);
+  }
+
+  /* ── Yucca-style transparent hover link ── */
+  .hover-link {
+    @apply relative overflow-hidden inline-flex items-center gap-2;
+  }
+
+  .hover-link .link-text,
+  .hover-link .link-text-hover {
+    @apply transition-transform duration-400;
+  }
+
+  .hover-link .link-text-hover {
+    @apply absolute inset-0;
+    transform: translateY(100%);
+  }
+
+  .hover-link:hover .link-text {
+    transform: translateY(-100%);
+  }
+
+  .hover-link:hover .link-text-hover {
+    transform: translateY(0);
+  }
+
+  /* ── Arrow icon ── */
+  .arrow-icon {
+    @apply w-10 h-10 rounded-full border border-white/20 flex items-center justify-center transition-all duration-500;
+  }
+
+  .arrow-icon:hover,
+  .solution-item:hover .arrow-icon {
+    @apply bg-golden-500 border-golden-500 text-forest-700;
+  }
+
+  /* ─── Dot accent (Yucca info sections) ─── */
+  .dot-accent::before {
+    content: '';
+    @apply w-2 h-2 rounded-full bg-golden-500 inline-block mr-3 shrink-0;
+  }
 }
 
 @layer utilities {
@@ -133,5 +262,29 @@
 
   .mask-gradient {
     mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  }
+
+  /* Yucca-style parallax transform */
+  .parallax-slow {
+    will-change: transform;
+  }
+
+  /* Yucca-style image scale on scroll */
+  .img-parallax {
+    will-change: transform;
+    transition: transform 0.1s linear;
+  }
+
+  .duration-400 {
+    transition-duration: 400ms;
+  }
+
+  /* Hide scrollbar for tab navigation */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
