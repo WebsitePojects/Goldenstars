@@ -96,6 +96,14 @@ cd ../server
 NODE_ENV=production npm start
 ```
 
+## Vercel Deployment
+
+- Set the Vercel project Root Directory to `client`
+- Framework Preset: `Vite`
+- Build Command: `npm run build`
+- Output Directory: `dist`
+- SPA refresh fallback is configured in `client/vercel.json`, so routes like `/about`, `/services`, `/products`, and `/contact` load correctly on refresh
+
 ## API Endpoints
 
 | Method | Endpoint          | Description                |
